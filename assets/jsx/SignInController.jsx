@@ -1,21 +1,32 @@
 var SignInController = React.createClass({
-  handleClick: function() {
+  handleSignIn: function() {
     Parse.FacebookUtils.logIn(null, {
       success: function(user) {
-        if (!user.existed()) {
-          alert("User signed up and logged in through Facebook!");
-        } else {
-          alert("User logged in through Facebook!");
-        }
+        this.setState({loggedIn: true});
       },
       error: function(user, error) {
-        alert("User cancelled the Facebook login or did not fully authorize.");
+        this.setState({loggedIn: false});
       }
     });
   },
+  handleLogOut: function() {
+    Parse.User.logOut();
+    this.setState({loggedIn: false});
+  },
+  getInitialState: function() {
+    return {loggedIn: false};
+  },
   render: function() {
-    return (
-      <a href="#" onClick={this.handleClick}>Sign in with Facebook</a>
-    );
+    // var currentUser = Parse.User.current();
+    if (this.state.loggedIn) {
+      return (
+        <a href="#" onClick={this.handleSignIn}>Sign in with Facebook</a>
+      );
+    }
+    else {
+      return (
+        <a href="#" onClick={this.handleLogOut}>Log Out</a>
+      );
+    }
   }
 });
