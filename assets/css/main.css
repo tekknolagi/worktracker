@@ -1,0 +1,22 @@
+div label {
+  display: block;
+}
+div.item-selector label {
+  list-style-type: none;
+  padding-top: 10px;
+  margin: 0px;
+  display: block;
+}
+div.price-indicator {
+  display: inline-block;
+}
+div.order-form {
+  text-align: left;
+  width: 400px;
+}
+div.price-indicator {
+  display: inline-block;
+}
+div.button-view {
+  display: block;
+}
