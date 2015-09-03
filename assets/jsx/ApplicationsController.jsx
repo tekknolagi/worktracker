@@ -2,12 +2,17 @@ var ApplicationsController = React.createClass({
   getInitialState: function() {
     return {applicationList: []};
   },
+  observe: function() {
+    return {
+      user: ParseReact.currentUser
+    };
+  },
   componentDidMount: function() {
     var this_ = this;
     var applicationQuery = new Parse.Query(Application);
     applicationQuery.include("user");
     applicationQuery.include("company");
-    applicationQuery.equalTo("user", Parse.User.current());
+    applicationQuery.equalTo("user", this.data.user);
     applicationQuery.find({
       success: function(applications) {
         if (this_.isMounted()) {
