@@ -1,4 +1,5 @@
 var ApplicationsController = React.createClass({
+  mixins: [ParseReact.Mixin],
   getInitialState: function() {
     return {applicationList: []};
   },
