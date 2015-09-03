@@ -7,7 +7,7 @@ var SignInController = React.createClass({
           user.set("displayName", me.name);
           user.set("email", me.email);
           user.save();
-          this_.dispatchEvent(UserChangeEvent);
+          window.dispatchEvent(UserChangeEvent);
         });
       },
       error: function(user, error) {
