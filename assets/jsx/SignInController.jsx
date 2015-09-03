@@ -19,12 +19,12 @@ var SignInController = React.createClass({
   render: function() {
     if (Parse.User.current()) {
       return (
-        <a href="#" onClick={this.handleSignIn}>Sign in with Facebook</a>
+        <a href="#" onClick={this.handleLogOut}>Log Out</a>
       );
     }
     else {
       return (
-        <a href="#" onClick={this.handleLogOut}>Log Out</a>
+        <a href="#" onClick={this.handleSignIn}>Sign in with Facebook</a>
       );
     }
   }
