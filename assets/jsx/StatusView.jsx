@@ -1,9 +1,12 @@
 var StatusView = React.createClass({
+  handleChange: function(event) {
+    this.props.onChange("status", event.target.value);
+  },
   render: function() {
     return (
-      <div className="status-view">
-        {this.props.status}
-      </div>
+      <EditableInputView
+        content={this.props.status}
+        onChange={this.handleChange} />
     );
   }
 });
