@@ -10,7 +10,7 @@ var SignInController = React.createClass({
           user.set("displayName", me.name);
           user.set("email", me.email);
           user.save();
-          this.setState({loggedIn: true});
+          this_.setState({loggedIn: true});
           window.dispatchEvent(UserChangeEvent);
         });
       },
