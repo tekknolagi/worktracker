@@ -19,12 +19,6 @@ var SignInController = React.createClass({
       }
     });
   },
-  componentDidMount: function() {
-    window.addEventListener("user_change", this.render);
-  },
-  componentWillUnmount: function() {
-    window.removeEventListener("user_change", this.render);
-  },
   handleLogOut: function() {
     Parse.User.logOut();
     this.setState({loggedIn: false});

@@ -22,6 +22,8 @@ var ApplicationsController = React.createClass({
   },
   componentDidMount: function() {
     this.loadApplicationList();
+    // there is a race condition here because of stupid Parse.User.logOut
+    // Parse.User.current() might not update and dfjsdfksjdfskdjf
     window.addEventListener("user_change", this.loadApplicationList);
   },
   componentWillUnmount: function() {
