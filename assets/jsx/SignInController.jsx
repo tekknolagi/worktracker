@@ -14,11 +14,10 @@ var SignInController = React.createClass({
     this.setState({loggedIn: false});
   },
   getInitialState: function() {
-    return {loggedIn: false};
+    return {loggedIn: Parse.User.current() != null};
   },
   render: function() {
-    // var currentUser = Parse.User.current();
-    if (this.state.loggedIn) {
+    if (Parse.User.current()) {
       return (
         <a href="#" onClick={this.handleSignIn}>Sign in with Facebook</a>
       );
