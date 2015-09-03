@@ -29,24 +29,11 @@ var ApplicationsController = React.createClass({
     window.removeEventListener("user_change", this.loadApplicationList);
   },
   render: function() {
-    if (this.state.applicationList.length > 0) {
-      return (
-        <div className="company-list">
-          <h2>Companies</h2>
-          {this.state.applicationList.map(function (application) {
-            return <ApplicationView key={application.id}
-                                    application={application} />;
-          })}
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="company-list">
-          <h2>Companies</h2>
-          No applications.
-        </div>
-      );
-    }
+    return (
+      <div className="application-list-container">
+        <h2>Companies</h2>
+        <ApplicationListView applications={this.state.applicationList} />
+      </div>
+    );
   }
 });
