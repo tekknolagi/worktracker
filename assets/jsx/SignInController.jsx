@@ -1,11 +1,12 @@
 var SignInController = React.createClass({
   handleSignIn: function() {
+    var this_ = this;
     Parse.FacebookUtils.logIn(null, {
       success: function(user) {
-        this.setState({loggedIn: true});
+        this_.setState({loggedIn: true});
       },
       error: function(user, error) {
-        this.setState({loggedIn: false});
+        this_.setState({loggedIn: false});
       }
     });
   },
