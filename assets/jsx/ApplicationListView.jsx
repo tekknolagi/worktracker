@@ -26,7 +26,7 @@ var ApplicationListView = React.createClass({
     else {
       return (
         <div className="application-list">
-          No applicaitons.
+          No applications.
         </div>
       );
     }
