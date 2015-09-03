@@ -1,8 +1,12 @@
 var ApplicationView = React.createClass({
   render: function() {
-    var company = this.props.application.attributes.company;
+    var application = this.props.application;
+    var company = application.attributes.company;
     return (
-      <CompanyView company={company} />
+      <div className="application-view">
+        <CompanyView company={company} />
+        <StatusView status={application.attributes.status} />
+      </div>
     );
   }
 });
