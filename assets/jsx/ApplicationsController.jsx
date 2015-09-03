@@ -7,6 +7,7 @@ var ApplicationsController = React.createClass({
     var applicationQuery = new Parse.Query(Application);
     applicationQuery.include("user");
     applicationQuery.include("company");
+    applicationQuery.equalTo("user", Parse.User.current());
     applicationQuery.find({
       success: function(applications) {
         if (this_.isMounted()) {
