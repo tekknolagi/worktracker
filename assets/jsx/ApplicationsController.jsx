@@ -1,13 +1,16 @@
 var ApplicationsController = React.createClass({
   getInitialState: function() {
-    return {companyList: []};
+    return {applicationList: []};
   },
   componentDidMount: function() {
     var this_ = this;
-    companyQuery.find({
-      success: function(companies) {
+    var applicationQuery = new Parse.Query(Application);
+    applicationQuery.include("user");
+    applicationQuery.include("company");
+    applicationQuery.find({
+      success: function(applications) {
         if (this_.isMounted()) {
-          this_.setState({companyList: companies});
+          this_.setState({applicationList: applications});
         }
       },
       error: function(object, error) {
@@ -17,13 +20,23 @@ var ApplicationsController = React.createClass({
     })
   },
   render: function() {
-    return (
-      <div className="company-list">
-        <h2>Companies</h2>
-        {this.state.companyList.map(function (company) {
-          return <CompanyView company={company} />;
-        })}
-      </div>
-    );
+    if (this.state.applicationList.length > 0) {
+      return (
+        <div className="company-list">
+          <h2>Companies</h2>
+          {this.state.applicationList.map(function (application) {
+            return <ApplicationView application={application} />;
+          })}
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="company-list">
+          <h2>Companies</h2>
+          No applications.
+        </div>
+      );
+    }
   }
 });

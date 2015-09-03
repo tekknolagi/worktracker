@@ -30,10 +30,7 @@
                    "RVIeNEZYC6gNyxhuTGGrhpEegF4o4iHLHc63aA5f");
 
   var Company = Parse.Object.extend("Company");
-  var companyQuery = new Parse.Query(Company);
-
   var Application = Parse.Object.extend("Application");
-  var applicationQuery = new Parse.Query(Application);
 
   window.fbAsyncInit = function() {
     Parse.FacebookUtils.init({
@@ -70,6 +67,7 @@
   </div>
   <script type="text/jsx" src="/assets/jsx/SignInController.jsx"></script>
   <script type="text/jsx" src="/assets/jsx/CompanyView.jsx"></script>
+  <script type="text/jsx" src="/assets/jsx/ApplicationView.jsx"></script>
   <script type="text/jsx" src="/assets/jsx/ApplicationsController.jsx"></script>
   <script type="text/jsx" src="/assets/jsx/index.jsx"></script>
   <script>
