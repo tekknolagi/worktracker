@@ -1,19 +1,13 @@
 var ApplicationsController = React.createClass({
-  mixins: [ParseReact.Mixin],
   getInitialState: function() {
     return {applicationList: []};
   },
-  observe: function() {
-    return {
-      user: ParseReact.currentUser
-    };
-  },
-  componentDidMount: function() {
+  loadApplicationList: function() {
     var this_ = this;
     var applicationQuery = new Parse.Query(Application);
     applicationQuery.include("user");
     applicationQuery.include("company");
-    applicationQuery.equalTo("user", this.data.user);
+    applicationQuery.equalTo("user", Parse.User.current());
     applicationQuery.find({
       success: function(applications) {
         if (this_.isMounted()) {
@@ -24,7 +18,14 @@ var ApplicationsController = React.createClass({
         // freak out
         console.log('Could not load company list');
       }
-    })
+    });
+  },
+  componentDidMount: function() {
+    this.loadApplicationList();
+    window.addEventListener("user_change", this.loadApplicationList);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener("user_change", this.loadApplicationList);
   },
   render: function() {
     if (this.state.applicationList.length > 0) {
@@ -32,7 +33,8 @@ var ApplicationsController = React.createClass({
         <div className="company-list">
           <h2>Companies</h2>
           {this.state.applicationList.map(function (application) {
-            return <ApplicationView application={application} />;
+            return <ApplicationView key={application.id}
+                                    application={application} />;
           })}
         </div>
       );

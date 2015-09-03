@@ -7,20 +7,23 @@ var SignInController = React.createClass({
           user.set("displayName", me.name);
           user.set("email", me.email);
           user.save();
-          this_.setState({loggedIn: true});
+          this_.dispatchEvent(UserChangeEvent);
         });
       },
       error: function(user, error) {
-        this_.setState({loggedIn: false});
+        alert("Something went wrong and we couldn't log you in.")
       }
     });
   },
+  componentDidMount: function() {
+    window.addEventListener("user_change", this.render);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener("user_change", this.render);
+  },
   handleLogOut: function() {
     Parse.User.logOut();
-    this.setState({loggedIn: false});
-  },
-  getInitialState: function() {
-    return {loggedIn: Parse.User.current() != null};
+    window.dispatchEvent(UserChangeEvent)
   },
   render: function() {
     if (Parse.User.current()) {

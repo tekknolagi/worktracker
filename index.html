@@ -23,17 +23,11 @@
 
   <!-- Parse -->
   <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
-
-  <!-- ParseReact -->
-  <script src="/assets/js/parse-react.min.js"></script>
 </head>
 <body>
   <script type="text/javascript">
   Parse.initialize("8NMBzHKOouViPbAZEMcqC7b2qnURdhk2W3Km3Ry7",
                    "RVIeNEZYC6gNyxhuTGGrhpEegF4o4iHLHc63aA5f");
-
-  var Company = Parse.Object.extend("Company");
-  var Application = Parse.Object.extend("Application");
 
   window.fbAsyncInit = function() {
     Parse.FacebookUtils.init({
