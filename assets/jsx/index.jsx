@@ -1,7 +1,7 @@
-// React.render(
-//   <ApplicationsController />,
-//   document.getElementById("content")
-// );
+React.render(
+  <ApplicationsController />,
+  document.getElementById("content")
+);
 
 React.render(
   <SignInController />,
