@@ -21,7 +21,7 @@ var ApplicationsController = React.createClass({
       <div className="company-list">
         <h2>Companies</h2>
         {this.state.companyList.map(function (company) {
-          return <CompanyView objectId={company.id} />;
+          return <CompanyView company={company} />;
         })}
       </div>
     );
