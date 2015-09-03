@@ -1,4 +1,7 @@
 var SignInController = React.createClass({
+  getInitialState: function() {
+    return {loggedIn: false};
+  },
   handleSignIn: function() {
     var this_ = this;
     Parse.FacebookUtils.logIn("email", {
@@ -7,6 +10,7 @@ var SignInController = React.createClass({
           user.set("displayName", me.name);
           user.set("email", me.email);
           user.save();
+          this.setState({loggedIn: true});
           window.dispatchEvent(UserChangeEvent);
         });
       },
@@ -23,10 +27,11 @@ var SignInController = React.createClass({
   },
   handleLogOut: function() {
     Parse.User.logOut();
-    window.dispatchEvent(UserChangeEvent)
+    this.setState({loggedIn: false});
+    window.dispatchEvent(UserChangeEvent);
   },
   render: function() {
-    if (Parse.User.current()) {
+    if (this.state.loggedIn) {
       return (
         <a href="#" onClick={this.handleLogOut}>Log Out</a>
       );
