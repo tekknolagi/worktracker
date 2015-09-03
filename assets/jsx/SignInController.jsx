@@ -1,6 +1,6 @@
 var SignInController = React.createClass({
   getInitialState: function() {
-    return {loggedIn: false};
+    return {loggedIn: Parse.User.current() != null};
   },
   handleSignIn: function() {
     var this_ = this;
